@@ -10,10 +10,9 @@ public class Dev extends Information implements Allowance {
     public Dev() {
     }
 
-    public Dev( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int doneTaskNumber, double allowance) {
+    public Dev( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int doneTaskNumber) {
         super(role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
         this.doneTaskNumber = doneTaskNumber;
-        this.allowance = allowance;
     }
 
     public float getDoneTaskNumber() {

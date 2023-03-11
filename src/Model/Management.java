@@ -15,11 +15,10 @@ public class Management extends Information implements Allowance {
     public Management() {
     }
 
-    public Management( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int resolveIssueNumber, int otherTaskNumber, double allowance) {
+    public Management( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int resolveIssueNumber, int otherTaskNumber) {
         super(role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
         this.resolveIssueNumber = resolveIssueNumber;
         this.otherTaskNumber = otherTaskNumber;
-        this.allowance = allowance;
     }
 
     public int getResolveIssueNumber() {

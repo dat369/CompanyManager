@@ -15,11 +15,10 @@ public class Leader extends Information implements Allowance {
     public Leader() {
     }
 
-    public Leader( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int reviewTaskNumber, int supportTaskNumber, double allowance) {
+    public Leader( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int reviewTaskNumber, int supportTaskNumber) {
         super(role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
         this.reviewTaskNumber = reviewTaskNumber;
         this.supportTaskNumber = supportTaskNumber;
-        this.allowance = allowance;
     }
 
     public int getReviewTaskNumber() {
