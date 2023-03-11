@@ -4,13 +4,13 @@ import controller.Allowance;
 
 public class Dev extends Information implements Allowance {
 
-    private float doneTaskNumber;
+    private int doneTaskNumber;
     private double allowance;
 
     public Dev() {
     }
 
-    public Dev(float doneTaskNumber, double allowance, String role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary) {
+    public Dev( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary,int doneTaskNumber, double allowance) {
         super(role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
         this.doneTaskNumber = doneTaskNumber;
         this.allowance = allowance;
@@ -20,7 +20,7 @@ public class Dev extends Information implements Allowance {
         return doneTaskNumber;
     }
 
-    public void setDoneTaskNumber(float doneTaskNumber) {
+    public void setDoneTaskNumber(int doneTaskNumber) {
         this.doneTaskNumber = doneTaskNumber;
     }
 

@@ -26,27 +26,27 @@ public class EmployeeManagement {
         this.employees = new ArrayList<>();
     }
 
-    public void addEmployee(String role, String employID, String account, String workStartingDate, int productivityScore,
+    public void addEmployee(int role, String employID, String account, String workStartingDate, int productivityScore,
             int checkType, int otherTaskNumber, int supportTaskNumber, int reviewTaskNumber, int resolveIssueNumber,
             int workingHour) {
         if (!"^MNV\\\\d{3}$".equals(employID)) {
             System.out.println("Invalid Employ ID! Please try again!");
             return;
         }
-        if (role == null || account == null || account.isEmpty()) {
+        if (role == 0|| account == null || account.isEmpty()) {
             System.out.println("Role and Account can not be null or empty! Please try again!");
             return;
         }
         Information employee = null;
         switch (role) {
-            case "Management":
-                employee = new Management(resolveIssueNumber, otherTaskNumber, allowance, role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
+            case 1:
+                employee = new Management( role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary,resolveIssueNumber, otherTaskNumber, allowance);
                 break;
-            case "Leader":
-                employee = new Leader(reviewTaskNumber, supportTaskNumber, allowance, role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
+            case 2:
+                employee = new Leader(reviewTaskNumber, supportTaskNumber, allowance, role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary,reviewTaskNumber, supportTaskNumber, allowance);
                 break;
-            case "Dev":
-                employee = new Dev(doneTaskNumber, allowance, role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary);
+            case 3:
+                employee = new Dev( role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary,reviewTaskNumber, supportTaskNumber, allowance);
                 break;
         }
         if (employee != null) {
@@ -129,15 +129,16 @@ public class EmployeeManagement {
 			File file =new File(namefile);
 			FileWriter fileWriter = new FileWriter(file);
 			BufferedWriter writer = new BufferedWriter(fileWriter);
+			
 			for (Information employee : employees) {
-				if(employee.getRole().equals("Management")) {
-					writer.write("1"+","+ employee.getId()+ "," +employee.getAccountEmployee() +","+employee.getWorkStartingDate()+","+employee.getProductivityScore()+","+employee.getMonthlyInCome()+","+employee.getRewardSalary());
+				if(employee.getRole()==1) {
+					writer.write(employee.getRole()+","+ employee.getId()+ "," +employee.getAccountEmployee() +","+employee.getWorkStartingDate()+","+employee.getProductivityScore()+","+employee.getMonthlyInCome()+","+employee.getRewardSalary()+","+employee.getResolveIssueNumber()+","+employee.getOtherTaskNumber()+","employee.getAllowance());
 					writer.newLine();
-				}if(employee.getRole().equals("Leader")) {
-					writer.write("2"+","+ employee.getId()+ "," +employee.getAccountEmployee() +","+employee.getWorkStartingDate()+","+employee.getProductivityScore()+","+employee.getMonthlyInCome()+","+employee.getRewardSalary());
+				}if(employee.getRole()==2) {
+					writer.write(employee.getRole()+","+ employee.getId()+ "," +employee.getAccountEmployee() +","+employee.getWorkStartingDate()+","+employee.getProductivityScore()+","+employee.getMonthlyInCome()+","+employee.getRewardSalary());
 					writer.newLine();
-				}if(employee.getRole().equals("Dev")) {
-					writer.write("3"+","+ employee.getId()+ "," +employee.getAccountEmployee() +","+employee.getWorkStartingDate()+","+employee.getProductivityScore()+","+employee.getMonthlyInCome()+","+employee.getRewardSalary());
+				}if(employee.getRole()==3) {
+					writer.write(employee.getRole()+","+ employee.getId()+ "," +employee.getAccountEmployee() +","+employee.getWorkStartingDate()+","+employee.getProductivityScore()+","+employee.getMonthlyInCome()+","+employee.getRewardSalary());
 					writer.newLine();
 				}
 			}
@@ -156,17 +157,17 @@ public class EmployeeManagement {
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] employee = line.split(",");
+				
 				if(employee[0].equals("1")) {
-					String role= "Management";
-					Information nv= new Management();
+					Information nv= new Management(Integer.parseInt(employee[0]),employee[1], employee[2],employee[3], Float.parseFloat(employee[4]),Double.parseDouble(employee[5]),Double.parseDouble(employee[6]) );
 					employees.add(nv);
 				}if(employee[0].equals("2")) {
 					String role= "Leader";
-					Information nv= new Leader();
+					Information nv= new Leader(Integer.parseInt(employee[0]),employee[1], employee[2],employee[3], Float.parseFloat(employee[4]),Double.parseDouble(employee[5]),Double.parseDouble(employee[6]));
 					employees.add(nv);
 				}if(employee[0].equals("3")) {
 					String role= "Dev";
-					Information nv= new Dev();
+					Information nv= new Dev(Integer.parseInt(employee[0]),employee[1], employee[2],employee[3], Float.parseFloat(employee[4]),Double.parseDouble(employee[5]),Double.parseDouble(employee[6]));
 					employees.add(nv);
 				}
 			}

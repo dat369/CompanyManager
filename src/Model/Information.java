@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public abstract class Information {
 
     private String id;
-    private String role;
+    private int role;
     private String accountEmployee;
     private String workStartingDate;
     private float productivityScore;
@@ -19,7 +19,7 @@ public abstract class Information {
     public Information() {
     }
 
-    public Information(String role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary) {
+    public Information(int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary) {
         this.role = role;
         this.id = id;
         this.accountEmployee = accountEmployee;
@@ -29,11 +29,11 @@ public abstract class Information {
         this.rewardSalary = rewardSalary;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 
