@@ -81,7 +81,17 @@ public class EmployeeManagement {
         	System.out.println("you entered the wrong data!");
 		}
     }
-
+    public void displayAllEmplyees() {
+    	if(employees.size()==0) {
+			System.out.println("khong co hoc sinh nao");
+		}else {
+			for (int i=0; i<employees.size(); i++) {
+				System.out.println(employees.get(i).toString());
+				
+			}
+		}
+		
+	}
     public void displayEmployeesByMonthlyIncomeAndAccount() {
         Collections.sort(employees, (o1,o2) -> {
             if (o1.calMonthlyInCome()==o2.calMonthlyInCome()) {
@@ -171,5 +181,6 @@ public class EmployeeManagement {
 			System.out.println("Error reading file: " + e.getMessage());
 		}
 	}
+	
 }
 
