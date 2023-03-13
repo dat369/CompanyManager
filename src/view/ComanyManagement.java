@@ -1,11 +1,12 @@
-
 package view;
-import controller.EmployeeManagement;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Scanner;
+
+
+import Controller.EmployeeManagement;
 public class ComanyManagement extends Menu<String>{
-    static String[] menu ={"add employees", "show all employees","sort student", "write into the file", "load the file","exit the program"};
+    Scanner sc = new Scanner(System.in);
+    static String[] menu ={"Add employees", "Calculate money","Update information","Sort student", "Write into the file", "Load the file","Print all student","Exit the program"};
     EmployeeManagement em = new EmployeeManagement();
     public ComanyManagement() {
         super("Company management", menu);
@@ -14,8 +15,9 @@ public class ComanyManagement extends Menu<String>{
     public void execuse(int n) {
         switch(n){
             case 1:em.addEmployee();break;
-            case 2:em.displayAllEmplyees();break;
-            case 3:String[] menu2 = {"sort by income and and account","sort by role and ID","exit sorting"}; Menu mn = new Menu("Sort student", menu2) {
+            case 2:String id = sc.nextLine();em.updateinformation(id);break;
+            case 3:String[] menu3 = {"sort by income and and account","sort by role and ID","exit sorting"}; 
+            			@SuppressWarnings("rawtypes") Menu mn = new Menu("Sort student", menu3){
                         @Override
                         public void execuse(int n) {
                             switch(n){
@@ -27,11 +29,11 @@ public class ComanyManagement extends Menu<String>{
                 try {
                     em.pwfile();
                 } catch (IOException ex) {
-                    Logger.getLogger(ComanyManagement.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("Undetected errors occur!");
                 }}break;
-            case 5:em.readfile();break;       
+            case 5:em.readfile();
+            case 6:em.displayAllEmplyees();
         }
     }
     
 }
-
