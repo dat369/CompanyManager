@@ -49,16 +49,20 @@ public class EmployeeManagement implements Calculate{
             if(obj instanceof Management){
                     Management management= (Management) obj;
                     if (getWorkingMonth(management.getWorkStartingDate())>= 36) {
-                        management.setAllowance( 2000000 * management.getProductivityScore());
+                    	double Allowance=  2000000 * management.getProductivityScore();
+                        management.setAllowance(Allowance);
                     } else {
-                        management.setAllowance(1200000 * management.getProductivityScore());
+                    	double Allowance= 1200000 * management.getProductivityScore();
+                        management.setAllowance(Allowance);
                     }
             }else if(obj instanceof Leader){
                 Leader lead = (Leader) obj;
                 if (getWorkingMonth(lead.getWorkStartingDate())>= 36) {
-                    lead.setAllowance( 2000000 * lead.getProductivityScore());
+                	double Allowance= 2000000 * lead.getProductivityScore();
+                    lead.setAllowance(Allowance);
                 } else {
-                    lead.setAllowance(1200000 * lead.getProductivityScore());
+                	double Allowance=1200000 * lead.getProductivityScore();
+                    lead.setAllowance(Allowance);
                 }
             }else{
                 System.out.println("there is no employee");
@@ -81,26 +85,31 @@ public class EmployeeManagement implements Calculate{
         }
     }
     public void calRewardSalary(Information obj){
-        obj.setRewardSalary(obj.getProductivityScore() * 3000000);
+    	double RewardSalary=obj.getProductivityScore() * 3000000;
+        obj.setRewardSalary(RewardSalary);
     }
     public void updateinformation(String id){
+    	int count = 0;
         for (Information employee : employees) {
             if(employee.getId().equals(id)){
-                calAllowance(employee);
-                calRewardSalary(employee);
-                calAllowance(employee);
-                System.out.println(employee.getMonthlyInCome());
-                System.out.println(employee.getRewardSalary());
-                System.out.println(employee.getAllowance());
-            }else{
-                System.out.println("the employees don't exist");
+            	count++;
+	        	calRewardSalary(employee);
+	        	calAllowance(employee);
+	        	calMonthlyIncome(employee);
+                System.out.println("MonthlyInCome: "+employee.getMonthlyInCome());
+                System.out.println("RewardSalary: "+employee.getRewardSalary());
+                System.out.println("Allowance: "+employee.getAllowance());
+                break;
             }
+        }
+        if(count ==0) {
+        	System.out.println("the employees don't exist");
         }
     }    
     public int check(int role, String id, String accountEmployee) {
         for (int i = 0; i < employees.size(); i++) {
             if (employees.get(i).getId().equals(id)) {
-                System.out.println("ID already exists!");
+            	System.out.println("ID already exists!");
                 return 1;
             }
         }
@@ -112,52 +121,50 @@ public class EmployeeManagement implements Calculate{
             return 1;
         }else return 0;
     }
-    public void addEmployee() {
-        try {
-	    	System.out.print("input Role: ");
-	    	int role= sc.nextInt();
-	    	System.out.print("input id: ");
-	    	String id= sc.nextLine();
-	    	sc.nextLine();
-	    	System.out.print("input accountEmployee: ");
-	    	String accountEmployee= sc.nextLine();
-	    	
-	    	if(check(role, id,accountEmployee)== 0) {
-		    	System.out.print("input workStartingDate: ");
-		    	String workStartingDate= sc.nextLine();
-		    	System.out.print("input productivityScore: ");
-		    	float productivityScore= sc.nextFloat();
-		        
-		        switch (role) {
-		            case 1:
-		            	System.out.print("input resolveIssueNumber: ");
-		            	int resolveIssueNumber= sc.nextInt();
-		            	System.out.print("input otherTaskNumber: ");
-		            	int otherTaskNumber= sc.nextInt();
-                                employees.add(new Management(role, id, accountEmployee, workStartingDate, productivityScore,employees.get(employees.size()).getMonthlyInCome(),employees.get(employees.size()).getRewardSalary(),employees.get(employees.size()).getMonthlyInCome(), resolveIssueNumber, otherTaskNumber));
-		                break;
-		            case 2:
-		            	System.out.print("input reviewTaskNumber: ");
-		            	int reviewTaskNumber= sc.nextInt();
-		            	System.out.print("input supportTaskNumber: ");
-		            	int supportTaskNumber= sc.nextInt();
-                                employees.add(new Leader(role, id, accountEmployee, workStartingDate, productivityScore, employees.get(employees.size()).getMonthlyInCome(),employees.get(employees.size()).getRewardSalary(),employees.get(employees.size()).getMonthlyInCome(), reviewTaskNumber, supportTaskNumber));
-		                break;
-		            case 3:
-		            	System.out.print("input doneTaskNumber: ");
-		            	int doneTaskNumber= sc.nextInt();
-                                employees.add(new Dev(role, id, accountEmployee, workStartingDate, productivityScore,employees.get(employees.size()).getMonthlyInCome(),employees.get(employees.size()).getRewardSalary(),employees.get(employees.size()).getMonthlyInCome(), doneTaskNumber));
-		                break;
-		        }
-	        }
-	        if (employees.size() !=0) {
-	            System.out.println("Employee added successfully!");
-	        } else {
-	            System.out.println("Can not add Employee! Please try again!");
-	        }
-        } catch (Exception e) {
-			// TODO: handle exception
-        	System.out.println("you entered the wrong data!");
+    public void addEmployee() throws IOException {
+        System.out.print("input Role: ");
+		int role= sc.nextInt();
+		sc.nextLine();
+		System.out.print("input id: ");
+		String id= sc.nextLine();
+		
+		System.out.print("input accountEmployee: ");
+		String accountEmployee= sc.nextLine();
+		
+		if(check(role, id,accountEmployee)== 0) {
+			System.out.print("input workStartingDate: ");
+			String workStartingDate= sc.nextLine();
+			System.out.print("input productivityScore: ");
+			float productivityScore= sc.nextFloat();
+		    switch (role) {
+		        case 1:
+		        	System.out.print("input resolveIssueNumber: ");
+		        	int resolveIssueNumber= sc.nextInt();
+		        	System.out.print("input otherTaskNumber: ");
+		        	int otherTaskNumber= sc.nextInt();
+		        	Information infor =new Management(role, id, accountEmployee, workStartingDate, productivityScore, resolveIssueNumber, otherTaskNumber);
+		        	employees.add(infor);
+		            break;
+		        case 2:
+		        	System.out.print("input reviewTaskNumber: ");
+		        	int reviewTaskNumber= sc.nextInt();
+		        	System.out.print("input supportTaskNumber: ");
+		        	int supportTaskNumber= sc.nextInt();
+		        	Information ld =new Leader(role, id, accountEmployee, workStartingDate, productivityScore,reviewTaskNumber, supportTaskNumber);
+		        	employees.add(ld);
+		            break;
+		        case 3:
+		        	System.out.print("input doneTaskNumber: ");
+		        	int doneTaskNumber= sc.nextInt();
+		        	Information dev =new Dev(role, id, accountEmployee, workStartingDate, productivityScore, doneTaskNumber);
+		        	employees.add(dev);
+		            break;
+		    }
+		}
+		if (employees.size() !=0) {
+		    System.out.println("Employee added successfully!");
+		} else {
+		    System.out.println("Can not add Employee! Please try again!");
 		}
     }
     public void displayAllEmplyees() {
@@ -201,28 +208,27 @@ public class EmployeeManagement implements Calculate{
         }
     }
     public void pwfile() throws IOException {
-        System.out.print("nhap ten file: ");
-        String namefile = sc.nextLine();
+        
 
         try {
-            File file = new File(namefile);
+            File file = new File("C:\\Users\\ACER\\eclipse-workspace\\AssignmentPRO\\PRO.txt");
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(fileWriter);
 
             for (Information employee : employees) {
                 if (employee instanceof Management) {
                     Management mn = (Management) employee;
-                    writer.write(mn.getRole() + "," + mn.getId() + "," + mn.getAccountEmployee() + "," + mn.getWorkStartingDate() + "," + mn.getProductivityScore() + "," + mn.getMonthlyInCome() + "," + mn.getRewardSalary() + "," + mn.getResolveIssueNumber() + "," + mn.getOtherTaskNumber());
+                    writer.write(mn.getRole() + "," + mn.getId() + "," + mn.getAccountEmployee() + "," + mn.getWorkStartingDate() +  "," + mn.getResolveIssueNumber() + "," + mn.getOtherTaskNumber());
                     writer.newLine();
                 }
                 if (employee instanceof Leader) {
                     Leader ld = (Leader) employee;
-                    writer.write(ld.getRole() + "," + ld.getId() + "," + ld.getAccountEmployee() + "," + ld.getWorkStartingDate() + "," + ld.getProductivityScore() + "," + ld.getMonthlyInCome() + "," + ld.getRewardSalary() + "," + ld.getReviewTaskNumber() + "," + ld.getSupportTaskNumber());
+                    writer.write(ld.getRole() + "," + ld.getId() + "," + ld.getAccountEmployee() + "," + ld.getWorkStartingDate() + "," + ld.getProductivityScore() + "," + ld.getSupportTaskNumber());
                     writer.newLine();
                 }
                 if (employee instanceof Dev) {
                     Dev de = (Dev) employee;
-                    writer.write(de.getRole() + "," + de.getId() + "," + de.getAccountEmployee() + "," + de.getWorkStartingDate() + "," + de.getProductivityScore() + "," + de.getMonthlyInCome() + "," + de.getRewardSalary() + "," + de.getDoneTaskNumber());
+                    writer.write(de.getRole() + "," + de.getId() + "," + de.getAccountEmployee() + "," + de.getWorkStartingDate() + "," + de.getProductivityScore() + "," + de.getDoneTaskNumber());
                     writer.newLine();
                 }
             }
@@ -233,24 +239,24 @@ public class EmployeeManagement implements Calculate{
     }
     public void readfile() {
         try {
-            File tenfile = new File("C:\\Users\\oteee\\Documents\\NetBeansProjects\\workshop\\Assigment\\PRO.txt");
+            File tenfile = new File("C:\\Users\\ACER\\eclipse-workspace\\AssignmentPRO\\PRO.txt");
             BufferedReader br = new BufferedReader(new FileReader(tenfile));
             String line;
             while ((line = br.readLine()) != null) {
                 String[] employee = line.split(",");
 
                 if (employee[0].equals("1")) {
-                    Information nv = new Management(Integer.parseInt(employee[0]), employee[1], employee[2], employee[3], Float.parseFloat(employee[4]), Double.parseDouble(employee[5]), Double.parseDouble(employee[6]),Double.parseDouble(employee[7]), Integer.parseInt(employee[8]), Integer.parseInt(employee[9]));
+                    Information nv = new Management(Integer.parseInt(employee[0]), employee[1], employee[2], employee[3], Float.parseFloat(employee[4]),  Integer.parseInt(employee[5]), Integer.parseInt(employee[6]));
                     employees.add(nv);
                 }
                 if (employee[0].equals("2")) {
 
-                    Information nv = new Leader(Integer.parseInt(employee[0]), employee[1], employee[2], employee[3], Float.parseFloat(employee[4]), Double.parseDouble(employee[5]), Double.parseDouble(employee[6]),Double.parseDouble(employee[7]), Integer.parseInt(employee[8]), Integer.parseInt(employee[9]));
+                    Information nv = new Leader(Integer.parseInt(employee[0]), employee[1], employee[2], employee[3], Float.parseFloat(employee[4]), Integer.parseInt(employee[5]), Integer.parseInt(employee[6]));
                     employees.add(nv);
                 }
                 if (employee[0].equals("3")) {
 
-                    Information nv = new Dev(Integer.parseInt(employee[0]), employee[1], employee[2], employee[3], Float.parseFloat(employee[4]), Double.parseDouble(employee[5]), Double.parseDouble(employee[6]),Double.parseDouble(employee[7]), Integer.parseInt(employee[8]));
+                    Information nv = new Dev(Integer.parseInt(employee[0]), employee[1], employee[2], employee[3], Float.parseFloat(employee[4]),  Integer.parseInt(employee[5]));
                     employees.add(nv);
                 }
             }

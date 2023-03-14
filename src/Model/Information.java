@@ -1,10 +1,6 @@
 package Model;
 
 
-/**
- *
- * @author Phan Trinh Tien Dat
- */
 public abstract class Information {
     private int role;
     private String id;
@@ -23,15 +19,24 @@ public abstract class Information {
     } 
     public Information() {
     }
-    public Information(int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary, double allowance) {
+    
+    public Information(int role, String id, String accountEmployee, String workStartingDate, float productivityScore,
+			double monthlyInCome, double rewardSalary, double allowance) {
+		this.role = role;
+		this.id = id;
+		this.accountEmployee = accountEmployee;
+		this.workStartingDate = workStartingDate;
+		this.productivityScore = productivityScore;
+		this.monthlyInCome = monthlyInCome;
+		this.rewardSalary = rewardSalary;
+		this.allowance = allowance;
+	}
+	public Information(int role, String id, String accountEmployee, String workStartingDate, float productivityScore) {
         this.role = role;
         this.id = id;
         this.accountEmployee = accountEmployee;
         this.workStartingDate = workStartingDate;
         this.productivityScore = productivityScore;
-        this.monthlyInCome = monthlyInCome;
-        this.rewardSalary = rewardSalary;
-        this.allowance = allowance;
     }
     public int getRole() {
         return role;
@@ -74,12 +79,13 @@ public abstract class Information {
     }
     public void setRewardSalary(double rewardSalary) {
         this.rewardSalary = rewardSalary;
-    }  
-    @Override
-    public String toString() {
-        return "Id: " + id + ", Role: " + role + 
-                ", Account employee: " + accountEmployee + 
-                ", Work starting date: " + workStartingDate + 
-                ", Productivity score: " + productivityScore;
     }
+	@Override
+	public String toString() {
+		return "Information [role=" + role + ", id=" + id + ", accountEmployee=" + accountEmployee
+				+ ", workStartingDate=" + workStartingDate + ", productivityScore=" + productivityScore
+				+ ", monthlyInCome=" + monthlyInCome + ", rewardSalary=" + rewardSalary + ", allowance=" + allowance
+				+ "]";
+	}  
+    
 }

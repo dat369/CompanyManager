@@ -10,9 +10,11 @@ public class Management extends Information{
     private int otherTaskNumber;
     
     public Management() {
+    	
     }
-    public Management(int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary, double allowance,int resolveIssueNumber, int otherTaskNumber) {
-        super(role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary, allowance);
+    
+	public Management(int role, String id, String accountEmployee, String workStartingDate, float productivityScore,int resolveIssueNumber, int otherTaskNumber) {
+        super(role, id, accountEmployee, workStartingDate, productivityScore);
         this.resolveIssueNumber = resolveIssueNumber;
         this.otherTaskNumber = otherTaskNumber;
     } 

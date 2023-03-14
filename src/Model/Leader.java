@@ -9,8 +9,8 @@ public class Leader extends Information{
     private int reviewTaskNumber;
     private int supportTaskNumber;
 
-    public Leader( int role, String id, String accountEmployee, String workStartingDate, float productivityScore, double monthlyInCome, double rewardSalary, double allowance,int reviewTaskNumber, int supportTaskNumber) {
-        super(role, id, accountEmployee, workStartingDate, productivityScore, monthlyInCome, rewardSalary, allowance);
+    public Leader( int role, String id, String accountEmployee, String workStartingDate, float productivityScore,int reviewTaskNumber, int supportTaskNumber) {
+        super(role, id, accountEmployee, workStartingDate, productivityScore);
         this.reviewTaskNumber = reviewTaskNumber;
         this.supportTaskNumber = supportTaskNumber;
     }  

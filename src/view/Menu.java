@@ -37,7 +37,6 @@ public abstract class Menu<T>{
     public abstract void execuse(int n); 
     public void run(){
         while(true){
-            vs.readfile();
             display();
             int n = enterChoice();
             execuse(n);
