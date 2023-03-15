@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  *
@@ -18,18 +18,23 @@ public class Management extends Information{
         this.resolveIssueNumber = resolveIssueNumber;
         this.otherTaskNumber = otherTaskNumber;
     } 
+	
     public int getResolveIssueNumber() {
         return resolveIssueNumber;
     }
+    
     public void setResolveIssueNumber(int resolveIssueNumber) {
         this.resolveIssueNumber = resolveIssueNumber;
     }
+    
     public int getOtherTaskNumber() {
         return otherTaskNumber;
     }
+    
     public void setOtherTaskNumber(int otherTaskNumber) {
         this.otherTaskNumber = otherTaskNumber;
     }
+    
     @Override
     public String toString() {
         return super.toString() + ", Resolve issue number: " + resolveIssueNumber + 

@@ -1,6 +1,9 @@
-package Model;
+package model;
 
-
+/**
+*
+* @author Phan Trinh Tien Dat
+*/
 public abstract class Information {
     private int role;
     private String id;
@@ -14,9 +17,11 @@ public abstract class Information {
     public double getAllowance() {
         return allowance;
     }
+    
     public void setAllowance(double allowance) {
         this.allowance = allowance;
     } 
+    
     public Information() {
     }
     
@@ -31,6 +36,7 @@ public abstract class Information {
 		this.rewardSalary = rewardSalary;
 		this.allowance = allowance;
 	}
+    
 	public Information(int role, String id, String accountEmployee, String workStartingDate, float productivityScore) {
         this.role = role;
         this.id = id;
@@ -38,54 +44,68 @@ public abstract class Information {
         this.workStartingDate = workStartingDate;
         this.productivityScore = productivityScore;
     }
+	
     public int getRole() {
         return role;
     }
+    
     public void setRole(int role) {
         this.role = role;
     }
+    
     public String getId() {
         return id;
     }
+    
     public void setId(String id) {
         this.id = id;
     }
+    
     public String getAccountEmployee() {
         return accountEmployee;
     }
+    
     public void setAccountEmployee(String accountEmployee) {
         this.accountEmployee = accountEmployee;
     }
+    
     public String getWorkStartingDate() {
         return workStartingDate;
     }
+    
     public void setWorkStartingDate(String workStartingDate) {
         this.workStartingDate = workStartingDate;
     }
+    
     public float getProductivityScore() {
         return productivityScore;
     }
+    
     public void setProductivityScore(float productivityScore) {
         this.productivityScore = productivityScore;
     }
+    
     public double getMonthlyInCome() {
         return monthlyInCome;
     }
+    
     public void setMonthlyInCome(double monthlyInCome) {
         this.monthlyInCome = monthlyInCome;
     }
+    
     public double getRewardSalary() {
         return rewardSalary;
     }
+    
     public void setRewardSalary(double rewardSalary) {
         this.rewardSalary = rewardSalary;
     }
+    
 	@Override
 	public String toString() {
-		return "Information [role=" + role + ", id=" + id + ", accountEmployee=" + accountEmployee
-				+ ", workStartingDate=" + workStartingDate + ", productivityScore=" + productivityScore
-				+ ", monthlyInCome=" + monthlyInCome + ", rewardSalary=" + rewardSalary + ", allowance=" + allowance
-				+ "]";
+		return "Role: " + role + ", ID: " + id + ", Account Employee: " + accountEmployee
+				+ ", Work Starting Date: " + workStartingDate + ", Productivity Score: " + productivityScore
+				+ ", Monthly In Come: " + (long)monthlyInCome + ", Reward Salary: " + rewardSalary + ", Allowance: " + allowance;
 	}  
     
 }

@@ -1,13 +1,13 @@
-
 package view;
 /**
-AUTHOR : LE DUC MANH
+*
+* @author Luu Thanh Dat
 */
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-import Controller.EmployeeManagement; 
+import controller.EmployeeManagement; 
 public abstract class Menu<T>{
     Scanner sc = new Scanner(System.in);
     private String title;
