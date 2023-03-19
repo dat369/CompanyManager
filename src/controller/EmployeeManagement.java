@@ -141,9 +141,7 @@ public class EmployeeManagement implements Calculate{
     }
     
     // Le Duc Manh
-    public int getWorkingHour(String workday){
-        return getWorkingMonth(workday) * 160;
-    }
+   
     
     // Le Duc Manh
     @Override
@@ -176,6 +174,7 @@ public class EmployeeManagement implements Calculate{
     public void calMonthlyIncome(Information obj) {
         calRewardSalary(obj);
         calAllowance(obj);
+        int thang =getWorkingMonth(obj.getWorkStartingDate());
         if(obj instanceof Management){
             Management management = (Management) obj;
             double MonthlyIncome = ((management.getResolveIssueNumber() * 5000000) + (management.getOtherTaskNumber() * 500000) + management.getRewardSalary()+ management.getAllowance());
@@ -186,13 +185,14 @@ public class EmployeeManagement implements Calculate{
             leader.setMonthlyInCome(MonthlyIncome);
         }else if(obj instanceof Dev){
             Dev dev= (Dev) obj;           
-            double MonthlyIncome = getWorkingHour(dev.getWorkStartingDate()) * 1500000 + dev.getRewardSalary() + dev.getAllowance() ;
+            double MonthlyIncome = (thang * 1500000.0 * 160.0) + dev.getRewardSalary()  ;
             dev.setMonthlyInCome(MonthlyIncome);
         }
     }
     
     // Le Duc Manh
     public void calRewardSalary(Information obj){
+    	
     	double RewardSalary = obj.getProductivityScore() * 3000000;
         obj.setRewardSalary(RewardSalary);
     }

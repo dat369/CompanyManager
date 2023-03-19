@@ -5,11 +5,12 @@ package view;
 */
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import controller.EmployeeManagement; 
 public abstract class Menu<T>{
-    Scanner sc = new Scanner(System.in);
+  
     private String title;
     private EmployeeManagement vs = new EmployeeManagement();
     private ArrayList<String> menu;
@@ -31,8 +32,16 @@ public abstract class Menu<T>{
         System.out.println("-----------");
     }
     public int enterChoice(){
-        System.out.print("Enter the choice: ");
-        return sc.nextInt();
+    	Scanner sc = new Scanner(System.in);
+    	try {
+    		 System.out.print("Enter the choice: ");
+    	        return sc.nextInt();
+    	}catch(InputMismatchException e) {
+    		System.out.println("Invalid choice! ");
+    		return 0;
+    	}
+    	
+       
     }
     public abstract void execuse(int n); 
     public void run(){

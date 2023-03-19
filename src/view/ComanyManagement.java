@@ -10,7 +10,7 @@ import controller.EmployeeManagement;
 
 public class ComanyManagement extends Menu<String>{
     Scanner sc = new Scanner(System.in);
-    static String[] menu ={"Add employees","Update information","Sort employee", "Write into the file", "Load the file","Print all employees","Exit the program"};
+    static String[] menu ={"Add employees","","Update information","Sort employee", "Write into the file", "Load the file","Print all employees","Exit the program"};
     EmployeeManagement em = new EmployeeManagement();
     public ComanyManagement() {
         super("Company management", menu);
@@ -48,6 +48,7 @@ public class ComanyManagement extends Menu<String>{
             case 6:
             	em.displayAllEmplyees();
             	break;
+            case 7:em.getWorkingMonth("13/06/2017");
         }
     }
     
